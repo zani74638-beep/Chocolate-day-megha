@@ -5,267 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Chocolate Day Megha</title>
     <style>
-        :root {
-            --primary-red: #e63946;
-            --soft-white: #fff5f5;
-            --rose-gold: #f4acb7;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--soft-white);
-            overflow-x: hidden;
-            height: 100%;
-        }
-
-        /* 3D Heart Background Effect */
-        .background-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .heart-particle {
-            position: absolute;
-            background: var(--primary-red);
-            width: 10px;
-            height: 10px;
-            transform: rotate(45deg);
-            animation: fall linear infinite;
-            opacity: 0.6;
-        }
-
-        .heart-particle::before, .heart-particle::after {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: var(--primary-red);
-            border-radius: 50%;
-        }
-
-        .heart-particle::before { left: -5px; }
-        .heart-particle::after { top: -5px; }
-
-        @keyframes fall {
-            0% { transform: translateY(-10vh) rotate(45deg) scale(0.5); }
-            100% { transform: translateY(110vh) rotate(405deg) scale(1.2); }
-        }
-
-        /* Page Transitions */
-        .page {
-            display: none;
-            height: 100vh;
-            width: 100%;
-            text-align: center;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
+        :root { --primary-red: #e63946; --soft-white: #fff5f5; }
+        body, html { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background-color: var(--soft-white); overflow-x: hidden; height: 100%; }
+        .background-hearts { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .heart-particle { position: absolute; background: var(--primary-red); width: 10px; height: 10px; transform: rotate(45deg); animation: fall linear infinite; opacity: 0.6; }
+        .heart-particle::before, .heart-particle::after { content: ''; position: absolute; width: 10px; height: 10px; background: var(--primary-red); border-radius: 50%; }
+        .heart-particle::before { left: -5px; } .heart-particle::after { top: -5px; }
+        @keyframes fall { 0% { transform: translateY(-10vh) rotate(45deg) scale(0.5); } 100% { transform: translateY(110vh) rotate(405deg) scale(1.2); } }
+        .page { display: none; height: 100vh; width: 100%; text-align: center; flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
         .active { display: flex; animation: fadeIn 1s; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Page 1 Styles */
-        .bouquet-img {
-            max-width: 300px;
-            cursor: pointer;
-            transition: transform 0.3s;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .bouquet-img:hover { transform: scale(1.05); }
-
-        /* Page 2 Styles */
-        .premium-love-title {
-            font-size: 2.5rem;
-            color: #4a2c2a;
-            margin-bottom: 20px;
-            font-family: 'Dancing Script', cursive;
-        }
-        .unwrap-btn {
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid var(--primary-red);
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        /* Page 3: Chocolate Box Grid */
-        .choco-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            max-width: 350px;
-        }
-        .choco-box {
-            width: 100px;
-            height: 100px;
-            background: #5d3a3a;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.2s;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-        }
-        .choco-box:hover { transform: scale(1.1); }
-        .mini-heart {
-            width: 20px;
-            height: 20px;
-            background: var(--primary-red);
-            transform: rotate(45deg);
-        }
-        .mini-heart::before, .mini-heart::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-red);
-            border-radius: 50%;
-        }
-        .mini-heart::before { left: -10px; }
-        .mini-heart::after { top: -10px; }
-
-        /* Message Popup */
-        #message-display {
-            margin-top: 20px;
-            padding: 15px;
-            background: white;
-            border-radius: 15px;
-            color: var(--primary-red);
-            font-weight: bold;
-            min-height: 50px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            width: 80%;
-        }
-
-        /* Final Page */
-        .final-msg {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 500px;
-            border: 2px solid var(--primary-red);
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .img-fluid { max-width: 85%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .unwrap-btn { background: white; border: 2px solid var(--primary-red); padding: 12px 25px; border-radius: 50px; font-size: 1.1rem; cursor: pointer; margin-top: 15px; color: var(--primary-red); font-weight: bold; }
+        .choco-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+        .choco-box { width: 85px; height: 85px; background: #5d3a3a; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
+        .mini-heart { width: 15px; height: 15px; background: var(--primary-red); transform: rotate(45deg); position: relative; }
+        .mini-heart::before, .mini-heart::after { content: ''; position: absolute; width: 15px; height: 15px; background: var(--primary-red); border-radius: 50%; }
+        .mini-heart::before { left: -8px; } .mini-heart::after { top: -8px; }
+        #msg-box { margin-top: 20px; padding: 15px; background: white; border-radius: 10px; color: #4a2c2a; font-weight: 600; min-height: 40px; width: 85%; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        #page4 { background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('bg.jpg') no-repeat center center; background-size: cover; }
+        .final-card { background: rgba(255, 255, 255, 0.9); padding: 25px; border-radius: 20px; border: 2px solid var(--primary-red); max-width: 90%; }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <div class="background-hearts" id="hearts-container"></div>
-
-    <!-- Page 1: The Bouquet -->
+    <div class="background-hearts" id="hearts"></div>
     <div id="page1" class="page active">
-        <h1 style="color: var(--primary-red);">Tap to Start, Megha!</h1>
-        <img src="https://via.placeholder.com/300x400?text=Chocolate+Bouquet" alt="Bouquet" class="bouquet-img" onclick="nextPage(2)">
-        <p>Click the Bouquet to begin your sweet journey!</p>
+        <h1 style="color: var(--primary-red); font-family: 'Dancing Script';">Happy Chocolate Day, Megha!</h1>
+        <img src="bouquet.jpg" class="img-fluid" onclick="nextPage(2)" style="cursor: pointer;">
+        <p>Click the bouquet to open your surprise ❤️</p>
     </div>
-
-    <!-- Page 2: Premium Love -->
     <div id="page2" class="page">
-        <h2 class="premium-love-title">Premium Love</h2>
-        <img src="https://via.placeholder.com/300x500?text=Chocolate+Splash" alt="Chocolate Splash" style="max-width: 250px;">
+        <h2 style="font-family: 'Dancing Script'; font-size: 2.5rem; color: #4a2c2a;">Premium Love</h2>
+        <img src="chocolate.jpg" class="img-fluid">
         <button class="unwrap-btn" onclick="nextPage(3)">Tap to Unwrap</button>
     </div>
-
-    <!-- Page 3: The 15 Chocolate Boxes -->
     <div id="page3" class="page">
-        <h2 style="color: #4a2c2a;">Pick a chocolate, Megha!</h2>
-        <div class="choco-grid" id="grid">
-            <!-- 15 Boxes will be generated by JS -->
-        </div>
-        <div id="message-display">Click a box to see a secret message...</div>
-        <button id="next-btn" class="unwrap-btn" style="display:none;" onclick="nextPage(4)">Next: Something for Teddy Day</button>
+        <h3 style="color: #4a2c2a;">Pick your chocolates, Megha!</h3>
+        <div class="choco-grid" id="grid"></div>
+        <div id="msg-box">Tap on the boxes...</div>
+        <button id="next-btn" class="unwrap-btn" style="display:none;" onclick="nextPage(4)">Next Surprise</button>
     </div>
-
-    <!-- Page 4: Final Heartfelt Message -->
     <div id="page4" class="page">
-        <div class="final-msg">
-            <h1 style="color: var(--primary-red);">Happy Chocolate & Teddy Day!</h1>
-            <p id="final-text">
-                "Megha, you are the sweetest part of my life. Just like a chocolate melts away, my heart melts every time I see your smile. On Teddy Day, I want to promise you that I'll always be there to give you the warmest hugs. You are my sugar rush and my forever comfort. I love you!"
-            </p>
-            <div style="font-size: 0.8rem; margin-top: 20px;">~ Forever Yours ❤️</div>
+        <div class="final-card">
+            <h2 style="color: var(--primary-red); font-family: 'Dancing Script';">My Sweetest Addiction ❤️</h2>
+            <img src="bear.jpg" style="width: 150px; margin-bottom: 15px;">
+            <p style="line-height: 1.6;">"Megha, you are sweeter than any chocolate in this world. Life might have dark moments, but you are the milk that makes everything perfect. Happy Chocolate Day and Teddy Day to my favorite person!"</p>
+            <p style="font-size: 0.8rem; color: var(--primary-red);">~ Forever Yours</p>
         </div>
     </div>
-
     <script>
-        // 1. Create 3D Heart Background
-        const heartsContainer = document.getElementById('hearts-container');
-        for (let i = 0; i < 30; i++) {
-            const heart = document.createElement('div');
-            heart.classList.add('heart-particle');
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            heart.style.animationDelay = Math.random() * 5 + 's';
-            heartsContainer.appendChild(heart);
-        }
-
-        // 2. Navigation Logic
-        function nextPage(pageNum) {
+        function nextPage(n) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page' + pageNum).classList.add('active');
+            document.getElementById('page'+n).classList.add('active');
         }
-
-        // 3. Chocolate Grid Logic
-        const messages = [
-            "Megha, you're sweeter than Dairy Milk!",
-            "Life is dark, but you are my milk chocolate.",
-            "Sending a virtual hug and chocolates to my Megha!",
-            "You're the caramel to my chocolate.",
-            "Megha, you are my favorite treat.",
-            "Stay sweet forever, my love!",
-            "You're the sugar rush in my life, Megha.",
-            "Megha + Chocolate = Best Combination!",
-            "I love you more than I love chocolate!",
-            "Wishing my sweet Megha a Happy Chocolate Day!",
-            "You make my heart melt like warm chocolate.",
-            "A sweet treat for the sweetest girl: Megha.",
-            "You are my premium love, always.",
-            "Can't wait to share real chocolates with you!",
-            "You are my sweetest addiction, Megha!"
-        ];
-
-        let clickedCount = 0;
+        const container = document.getElementById('hearts');
+        for (let i = 0; i < 30; i++) {
+            const h = document.createElement('div');
+            h.className = 'heart-particle';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            h.style.animationDelay = Math.random() * 5 + 's';
+            container.appendChild(h);
+        }
+        const msgs = ["Megha, you're my Dairy Milk!", "Sweetest girl ever!", "My sugar rush ⚡", "I love you more than chocolate!", "You melt my heart ❤️", "Stay sweet forever Megha!", "My favorite treat is YOU", "Life is better with you", "Chocolate + Megha = Perfect", "You are my premium love", "Missing your sweet smile", "Virtual Hugs Megha!", "You are the BEST!", "My forever valentine", "Happy Chocolate Day, My Love!"];
+        let count = 0;
         const grid = document.getElementById('grid');
         for (let i = 0; i < 15; i++) {
-            const box = document.createElement('div');
-            box.classList.add('choco-box');
-            box.innerHTML = '<div class="mini-heart"></div>';
-            box.onclick = function() {
-                document.getElementById('message-display').innerText = messages[i];
-                this.style.background = "#e63946";
-                this.style.pointerEvents = "none";
-                clickedCount++;
-                if(clickedCount >= 5) { // Show next button after 5 clicks
-                    document.getElementById('next-btn').style.display = "block";
-                }
+            const b = document.createElement('div');
+            b.className = 'choco-box'; b.innerHTML = '<div class="mini-heart"></div>';
+            b.onclick = function() {
+                document.getElementById('msg-box').innerText = msgs[i];
+                this.style.background = "#e63946"; this.style.pointerEvents = "none";
+                count++; if(count >= 5) document.getElementById('next-btn').style.display = "block";
             };
-            grid.appendChild(box);
+            grid.appendChild(b);
         }
-
-        // Note: Change image placeholders to your actual image paths:
-        // Page 1: image_1.jpg (Bouquet)
-        // Page 2: image_2.jpg (Choco splash/bar)
-        // Page 4: image_3.jpg (Background for message)
     </script>
 </body>
 </html>
